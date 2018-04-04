@@ -6,7 +6,7 @@ URL = "https://yts.am/browse-movies?page="
 csv_file = open('yify_movie_list.csv', 'w')
 csv_writer = csv.writer(csv_file)
 csv_writer.writerow(['MOVIES', 'IMDB-RATING', 'NUMBER OF LIKES', 'NUMBER OF DOWNLOADS'])
-for page in range(1, 356):
+for page in range(1, 50):
     URL = "https://yts.am/browse-movies?page="+str(page)
     r = requests.get(URL).text
     soup = BeautifulSoup(r, "lxml")
@@ -15,13 +15,13 @@ for page in range(1, 356):
         movie_name = mov_name.a.text
         movie_year = mov_name.div.text
         movie_name = movie_name + " " + movie_year
-        print(movie_name)
+
         rating = name.find('h4', class_="rating").text
         rating = rating[:3]
 
         if(rating[2] == '/'):
             rating = rating[0:2]
-        print("imdb rating:", rating)
+
         try:
             movie_url = "https://yts.am/movie/" + movie_name.replace(" ", "-")
             movie_url = movie_url.lower()
@@ -32,7 +32,7 @@ for page in range(1, 356):
             downladed = n_soup.find('div', id="synopsis")
             downloaded = downladed.find('p', class_=None)
             for down_loaded in downloaded.findAll('em'):
-                if(down_loaded.text[:1] == 'D'):
+                if(down_loaded.text[:10] == 'Downloaded'):
                     num_downloads = down_loaded.text[11:]
                     num_downloads = num_downloads[:(len(num_downloads)-6)]
 
@@ -40,8 +40,12 @@ for page in range(1, 356):
             likes = None
             num_downloads = None
             pass
+        movie_name = mov_name.a.text + " (" + movie_year + ")"
+        print(movie_name)
+        print("imdb rating:", rating)
         print("number of likes:", likes)
         print("number of downloads:", num_downloads)
         csv_writer.writerow([movie_name, rating, likes, num_downloads])
 
+print("done !!")
 csv_file.close()
