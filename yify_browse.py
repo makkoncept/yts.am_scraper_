@@ -6,7 +6,7 @@ URL = "https://yts.am/browse-movies?page="
 csv_file = open('yify_movie_list.csv', 'w')
 csv_writer = csv.writer(csv_file)
 csv_writer.writerow(['MOVIES', 'IMDB-RATING', 'NUMBER OF LIKES', 'NUMBER OF DOWNLOADS'])
-for page in range(1, 50):
+for page in range(1, 357):
     URL = "https://yts.am/browse-movies?page="+str(page)
     r = requests.get(URL).text
     soup = BeautifulSoup(r, "lxml")
