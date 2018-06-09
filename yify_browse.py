@@ -29,6 +29,7 @@ for page in range(1, 357):
             n_soup = BeautifulSoup(request, "lxml")
             info = n_soup.find('div', class_="bottom-info")
             likes = info.find('span', id="movie-likes").text
+            imdb_link = info.find('a', title="IMDb Rating")['href']
             downladed = n_soup.find('div', id="synopsis")
             downloaded = downladed.find('p', class_=None)
             for down_loaded in downloaded.findAll('em'):
@@ -39,13 +40,15 @@ for page in range(1, 357):
         except Exception as e:
             likes = None
             num_downloads = None
+            imdb_link = None
             pass
         movie_name = mov_name.a.text + " (" + movie_year + ")"
         print(movie_name)
         print("imdb rating:", rating)
         print("number of likes:", likes)
         print("number of downloads:", num_downloads)
-        csv_writer.writerow([movie_name, rating, likes, num_downloads])
+         print("IMDb link:", imdb_link)
+        csv_writer.writerow([movie_name, rating, likes, num_downloads, imdb_link])
 
 print("done !!")
 csv_file.close()
