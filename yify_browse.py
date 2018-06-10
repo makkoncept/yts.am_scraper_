@@ -5,7 +5,7 @@ import csv
 URL = "https://yts.am/browse-movies?page="
 csv_file = open('yify_movie_list.csv', 'w')
 csv_writer = csv.writer(csv_file)
-csv_writer.writerow(['MOVIES', 'IMDB-RATING', 'NUMBER OF LIKES', 'NUMBER OF DOWNLOADS'])
+csv_writer.writerow(['MOVIES', 'IMDB-RATING', 'NUMBER OF LIKES', 'NUMBER OF DOWNLOADS','IMDb Link'])
 for page in range(1, 357):
     URL = "https://yts.am/browse-movies?page="+str(page)
     r = requests.get(URL).text
