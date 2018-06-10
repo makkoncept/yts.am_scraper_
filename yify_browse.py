@@ -23,7 +23,17 @@ for page in range(1, 357):
             rating = rating[0:2]
 
         try:
-            movie_url = "https://yts.am/movie/" + movie_name.replace(" ", "-")
+            movie_name = movie_name.replace(" ", "-")     
+            index = 0
+            for char in movie_name:                             #handle special characters in the url
+                if char.isalnum()==False and char != "-":
+                     movie_name = movie_name.replace(char,"")
+            for char in movie_name:
+                    if char == "-" and movie_name[index+1]=="-":
+                         movie_name = movie_name[:index]+movie_name[index+1:]
+                    if(index < len(movie_name)-1):   
+                        index = index+1
+            movie_url = "https://yts.am/movie/" + movie_name
             movie_url = movie_url.lower()
             request = requests.get(movie_url).text
             n_soup = BeautifulSoup(request, "lxml")
