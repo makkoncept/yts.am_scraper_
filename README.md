@@ -30,6 +30,12 @@ Change to the code directory in command prompt and run
 
 `python yify_browse.py`
 
+To download all the Torrents at a strech run 
+
+`python downloadlinks.py`
+
+**Note :** all the torrent files will be downloaded to the browser(default) downloads path
+
 **Warning :** The script will scrape a large amount of data and if you do not want it to be displayed on your prompt, you can comment out the print statements in the code. Data will be saved in csv file after the execution is complete.
 
 ## Built With
