@@ -5,16 +5,6 @@ This is a Python script to scrape all the available movie torrent names wih thei
 
 **NOTE :** If yts.am(Yify movies) is blocked at your place, first connect the internet to a VPN and then run the script.
 
-# Screenshots
-![movie_list](images/movie_list.png)
-
-
-__We can apply filters to the data__
-
-
-![filters](images/filter.png)
-
-
 ## Prerequisites
 This script needs two external dependencies  
 - beautfulsoup4
