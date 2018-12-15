@@ -19,14 +19,13 @@ with open('data.csv', 'r') as open_file:
 				l.append(row[5])
 			else:
 				l.append(row[6])
-			print row
-			print ""
-			print ""
+			print(row)
+			print(" ")
 			c = c + 1
 
-	print l
-	print " "
-	print c
+	print(l)
+	print(" ")
+	print(c)
 for i in l:
 	webbrowser.open(i)
 	if(c%25 == 0):
