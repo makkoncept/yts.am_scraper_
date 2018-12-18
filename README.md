@@ -1,4 +1,4 @@
-# yts.am_scraper
+# Movie scraper from YTS
 This is a Python script to scrape all the available movie torrent names wih their respective IMDB score, number of likes and number of downloads from yts.am so that we can filter out better movies from the site. Yts.am do not have good search and filter tools. This script saves the data in a csv file and hence enable the user to open it in any spreadsheet software and filter the data
 
 ***UPDATE :*** The script can now scrape IMDb movie links and 720p and 1080p torrent links. Also it can now handle movies which have special charachters in their names.
