@@ -6,7 +6,7 @@ import time
 URL = "https://yts.am/browse-movies?page="
 csv_file = open('yify_movie_list.csv', 'w')
 csv_writer = csv.writer(csv_file)
-csv_writer.writerow(['MOVIES', 'GENRE','IMDB-RATING', 'NUMBER OF LIKES', 'NUMBER OF DOWNLOADS','IMDb Link','720p torrent','1080p torrent'])
+csv_writer.writerow(['MOVIES', 'YEAR', 'GENRE','IMDB-RATING', 'NUMBER OF LIKES', 'NUMBER OF DOWNLOADS','IMDb Link','720p torrent','1080p torrent'])
 for page in range(1, 487):
     URL = "https://yts.am/browse-movies?page="+str(page)
     r = requests.get(URL).text
@@ -57,13 +57,16 @@ for page in range(1, 487):
 
         except Exception as e:
             likes = None
+            genre = None
             num_downloads = None
             imdb_link = None
             torrent_720 = None
             torrent_1080 = None
             pass
-        movie_name = (mov_name.a.text + " (" + movie_year + ")")
+        movie_name = mov_name.a.text
+        movie_year = movie_year
         print(movie_name)
+        print(movie_year)
         print("genre", genre)
         print("imdb rating:", rating)
         print("number of likes:", likes)
@@ -72,7 +75,7 @@ for page in range(1, 487):
         print("720p torrent:", torrent_720)
         print("1080p torrent:", torrent_1080)
         try:
-            csv_writer.writerow([movie_name.encode('utf-8'), genre.encode('utf-8'), rating.encode('utf-8'), likes.encode('utf-8'), num_downloads.encode('utf-8'), imdb_link.encode('utf-8'), torrent_720.encode('utf-8'), torrent_1080.encode('utf-8')])
+            csv_writer.writerow([movie_name.encode('utf-8'), movie_year.encode('utf-8'), genre.encode('utf-8'), rating.encode('utf-8'), likes.encode('utf-8'), num_downloads.encode('utf-8'), imdb_link.encode('utf-8'), torrent_720.encode('utf-8'), torrent_1080.encode('utf-8')])
         except Exception as e:
             print("file unavaliable")
             continue
