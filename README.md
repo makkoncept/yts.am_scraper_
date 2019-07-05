@@ -20,7 +20,7 @@ Change to the code directory in command prompt and run
 
 `python yify_browse.py`
 
-To download all the Torrents at a strech run 
+To download all the Torrents at a stretch run 
 
 `python downloadlinks.py`
 
